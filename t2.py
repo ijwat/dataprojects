@@ -9,9 +9,9 @@ import pandas as pd
 ticker = 'TSM'
 df = yf.download(ticker, start="2020-01-01", end="2024-10-13")
 
-# Assuming the closing price is used and adding hypothetical shares outstanding
-shares_outstanding = 5187e6  # Approximate number of outstanding shares for TSMC in millions
-df['MarketCap'] = df['Close'] * shares_outstanding  # Calculate market cap
+# Assuming the closing price is used and adding shares outstanding
+shares_outstanding = 5187e6  
+df['MarketCap'] = df['Close'] * shares_outstanding  
 
 # Select only the date and market cap columns
 df = df.reset_index()[['Date', 'MarketCap']]
@@ -39,7 +39,7 @@ fig.update_layout(
 
 # Add watermark annotation
 fig.add_annotation(
-    text="ijwat",  # Change to your watermark text
+    text="ijwat",  
     font=dict(size=20, color='rgba(0, 0, 0, 0.5)'),
     showarrow=False,
     xref="paper",
