@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 import plotly.graph_objs as go
 
-# List of tickers you want to fetch data for
+# List of tickers 
 tickers = ['AMD', 'TSM', 'NVDA', 'INTC']
 api_key = 'elRUkSNSr4_gdZ3xYJqOBrjSlKshPPUI'
 
@@ -21,12 +21,12 @@ for ticker in tickers:
         # Convert the results into a DataFrame
         df = pd.DataFrame(data['results'])
         
-        # Convert the 't' column (timestamp) to datetime format
+        
         df['Date'] = pd.to_datetime(df['t'], unit='ms')
         
         # Select only the date and closing price columns
-        df = df[['Date', 'c']]  # 'c' is the closing price
-        df.columns = ['Date', 'Close']  # Rename for clarity
+        df = df[['Date', 'c']]  
+        df.columns = ['Date', 'Close']  
         
         # Add a column for the ticker
         df['Ticker'] = ticker
@@ -45,7 +45,7 @@ fig = go.Figure()
 
 # Loop through each ticker and plot its data
 for ticker in tickers:
-    # Filter data for the current ticker
+   
     df_ticker = df_combined[df_combined['Ticker'] == ticker]
     
     # Add a trace for each company
@@ -54,7 +54,7 @@ for ticker in tickers:
         y=df_ticker['Close'],
         mode='lines',
         name=f'{ticker} Prices',
-        line=dict(width=2)  # You can customize the color here for each ticker if needed
+        line=dict(width=2)  
     ))
 
 # Customize layout
